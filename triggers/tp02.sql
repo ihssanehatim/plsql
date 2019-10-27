@@ -1,23 +1,25 @@
----------------Create TRIGGER-----------------
-create or replace trigger employe_control_job
----controler les ajouts et les modifs de salaires ::
-before insert or update on  jobs
+-- ---------------Create TRIGGER-----------------
+-- create or replace trigger employe_control_job
+-- ---controler les ajouts et les modifs de salaires ::
+-- before insert or update on  employees
 
-for each row 
--- ------------------DECLARE----- ----------
+-- for each row 
+-- -- ------------------DECLARE----------
+-- declare 
+-- var_max employees
+-- ----------------------------+---------+
+-- when (new.job_id != 'AD_PRES' )  ----++
+-- --------------------------------------+
+-- begin
+-- --------------------------MAIN---------------------
+-- -- id_j := :new.job_id;
+-- ----it 's forbidden to select in a trigger line :p ---MUTATION TABLE
+-- select min_salary, max_salary into var_min,var_max from
+-- jobs where job_id = :new.job_id ;
 
----------------------------
-when (new.job_title != 'President' )  ----
----------------------------
-begin
---------------------------MAIN---------------------
--- id_j := :new.job_id;
-----it 's forbidden to select in a trigger line :p ---MUTATION TABLE
--- select min(salary), max(salary) into var_min,var_max from jobs; --- forbidden to do it 
-
-    if :new.salary < min_salary or :new.salary > max_salary  then
-        raise_application_error(-20800, 'Salary overflow');
-    end if;
----------------------------------------------------
-end;
-/
+--     if :new.salary < var_min or :new.salary > var_max  then
+--         raise_application_error(-20800, 'Salary overflow');
+--     end if;
+-- ---------------------------------------------------
+-- end;
+-- /

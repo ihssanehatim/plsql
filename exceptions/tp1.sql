@@ -26,6 +26,6 @@ exception
   when no_data_found then
     DBMS_OUTPUT.PUT_LINE('NO DATA FOUND EXCEPTION');
   when others then 
-    DBMS_OUTPUT.PUT_LINE('No Exception Found .');  
+    DBMS_OUTPUT.PUT_LINE('Other Exceptions Found .');  
 end;
 /
